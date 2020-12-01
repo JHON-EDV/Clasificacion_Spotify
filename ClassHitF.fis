@@ -1,0 +1,72 @@
+[System]
+Name='ClassHitF'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=2
+NumRules=16
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Tempo'
+Range=[0 250]
+NumMFs=2
+MF1='HIT':'trimf',[114 118 252]
+MF2='NOHIT':'trimf',[1.496 78.5 131.5]
+
+[Input2]
+Name='Loudnes'
+Range=[-60 4]
+NumMFs=2
+MF1='NOHIT':'trimf',[-60.5 -40 -11]
+MF2='HIT':'trimf',[-11 -10.6 4.5]
+
+[Input3]
+Name='Danceability'
+Range=[0 1]
+NumMFs=2
+MF1='NOHIT':'trimf',[-0.4114 0.2 0.64]
+MF2='HIT':'trimf',[0.62 0.68 1.1]
+
+[Input4]
+Name='Energy'
+Range=[0 1]
+NumMFs=2
+MF1='NOHIT':'trimf',[-0.4193 0 0.71]
+MF2='HIT':'trimf',[0.7 0.75 1.1]
+
+[Output1]
+Name='NH'
+Range=[0 1]
+NumMFs=2
+MF1='NOHIT':'pimf',[-0.2 0.2 0.3 0.802910052910053]
+MF2='HIT':'dsigmf',[27.5 0.7 27.5 0.988095238095238]
+
+[Output2]
+Name='HIT'
+Range=[0 1]
+NumMFs=2
+MF1='HIT':'pimf',[0.324074074074074 0.565 0.85 1.2]
+MF2='Nohit':'dsigmf',[19.4 -0.0709 19.4 0.226190476190476]
+
+[Rules]
+0 1 0 0, -1 0 (1) : 1
+0 2 0 0, -2 0 (1) : 1
+0 2 0 0, 0 1 (1) : 1
+0 1 0 0, 0 2 (1) : 1
+0 0 1 0, -1 0 (1) : 1
+0 0 2 0, -2 0 (1) : 1
+0 0 2 0, 0 1 (1) : 1
+0 0 1 0, 0 2 (1) : 1
+0 0 0 2, -2 0 (1) : 1
+0 0 0 1, -1 0 (1) : 1
+0 0 0 2, 0 1 (1) : 1
+0 0 0 1, 0 2 (1) : 1
+1 0 0 0, -1 0 (1) : 1
+2 0 0 0, -2 0 (1) : 1
+2 0 0 0, 0 2 (1) : 1
+1 0 0 0, 0 2 (1) : 1
